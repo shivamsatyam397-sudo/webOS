@@ -151,6 +151,8 @@ const openApp = (app) => {
 
   el.querySelector(".cls").addEventListener("click", () => {
     el.remove();
+    delete wins[app];
+    dockButton.classList.remove("run");
   });
 
   // Drag the window by its title bar.
@@ -307,16 +309,8 @@ const notesApp = (body) => {
   const previewButton = body.querySelector("#pv");
 
   const updateWordCount = () => {
-     const words=textarea.value.replace(/[\r\n]+/gm, " ").trim().split(" ");
-    
-    let c=0;
-     for(let i=0;i<words.length;i++){
-      
-        if(words[i].length!==0){
-          c++;
-        }
-     }
-    wordCount.textContent = `${c} words`;
+    const words = textarea.value.split(" ").length;
+    wordCount.textContent = `${words} words`;
   };
   updateWordCount();
 
